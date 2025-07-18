@@ -1,0 +1,47 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Query {
+ projectByDni(dni: String!): [Project!]!
+}
+
+type Mutation{
+registerProject(input: ProjectInput!): Project!
+}
+
+type Project{
+    id: ID!
+    name: String!
+    description: String
+    startDate: String
+    endDate: String
+    status: String
+    employees : [EmployeeAssigned]!
+}
+
+type EmployeeAssigned{
+    id: ID!
+    name: String!
+    lastName: String!
+    dni: String!
+    role: String!
+}
+
+input ProjectInput {
+    name: String!
+    description: String
+    startDate: String
+    endDate: String
+    status: String
+    employees: [EmployeeInput!]!
+}
+
+input EmployeeInput {
+    name: String!
+    lastName: String!
+    dni: String!
+    role: String!
+}
+
