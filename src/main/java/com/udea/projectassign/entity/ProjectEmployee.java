@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @IdClass(ProjectEmployeeId.class)
+@Table(name = "project_employee")
 public class ProjectEmployee {
 
     @EmbeddedId

@@ -1,6 +1,8 @@
 package com.udea.projectassign.entity;
 
-public class ProjectEmployeeId {
+import java.io.Serializable;
+
+public class ProjectEmployeeId implements Serializable{
     private Long project;
     private Long employee;
 }
