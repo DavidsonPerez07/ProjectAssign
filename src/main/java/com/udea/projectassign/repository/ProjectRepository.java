@@ -9,5 +9,5 @@ import com.udea.projectassign.entity.Project;
 
 @Repository
 public interface ProjectRepository extends JpaRepository <Project, Long> {
-    List<Project> findByEmployeeDni(String employeeDni);
+    List<Project> findByEmployeesDni(String employeeDni);
 }

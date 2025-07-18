@@ -23,6 +23,11 @@ public class Employee {
     @Column(unique = true)
     private String dni;
 
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
-    private List<ProjectEmployee> projects;
+    @OneToMany
+    @JoinTable(
+        name = "employee_project",
+        joinColumns = @JoinColumn(name = "employee_id"),
+        inverseJoinColumns = @JoinColumn(name = "project_id")
+    )
+    private List<Project> projects;
 }

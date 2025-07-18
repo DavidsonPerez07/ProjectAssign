@@ -29,7 +29,7 @@ public class Project {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
-    private List<ProjectEmployee> projectEmployee;
+    @ManyToMany(mappedBy = "projects")
+    private List<Employee> employees;
 }
 

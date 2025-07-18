@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.udea.projectassign.entity.Employee;
 import com.udea.projectassign.entity.Project;
-import com.udea.projectassign.entity.ProjectEmployee;
 import com.udea.projectassign.entity.Status;
 import com.udea.projectassign.repository.ProjectRepository;
 
@@ -25,21 +24,21 @@ public class ProjectService {
     }
 
     public Project addProject(String name, String description, 
-                                LocalDateTime startDate, LocalDateTime endDate, Status status, List<String> employeeDnis) {
+                                LocalDateTime startDate, LocalDateTime endDate, List<String> employeeDnis) {
         return Optional.of(new Project())
                 .map(project ->{
                     setIfNotNull(project::setName, name);
                     setIfNotNull(project::setDescription, description);
                     setIfNotNull(project::setStartDate, startDate);
                     setIfNotNull(project::setEndDate, endDate);
-                    setIfNotNull(project::setStatus, status);
+                    setIfNotNull(project::setStatus, Status.ACTIVE);
                     setIfNotNull(project::setEmployees, employeesForAProject(employeeDnis));
                     return projectRepository.save(project);
                 })
                 .orElseThrow(()-> new RuntimeException("Error creating project"));
     }
 
-    public List<ProjectEmployee> employeesForAProject(List<String> employeeDnis) {
+    public List<Employee> employeesForAProject(List<String> employeeDnis) {
         List<Employee> employees = new ArrayList<>();
         for (String dni : employeeDnis) {
             employees.add(employeeService.getByDni(dni));

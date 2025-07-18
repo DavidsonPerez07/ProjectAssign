@@ -37,7 +37,7 @@ public class EmployeeService {
     }
 
     public List<Project> getProjectsByDni(String dni) {
-        return projectRepository.findByEmployeeDni(dni);
+        return projectRepository.findByEmployeesDni(dni);
     }
 
     public Employee getByDni(String dni) {
