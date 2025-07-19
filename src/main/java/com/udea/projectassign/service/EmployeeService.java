@@ -1,5 +1,6 @@
 package com.udea.projectassign.service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -37,7 +38,8 @@ public class EmployeeService {
     }
 
     public List<Project> getProjectsByDni(String dni) {
-        return projectRepository.findByEmployeesDni(dni);
+        List<Project> projects = projectRepository.findByEmployeesDni(dni);
+        return projects != null ? projects : Collections.emptyList(); // Nunca retornar null
     }
 
     public Employee getByDni(String dni) {

@@ -12,19 +12,8 @@ type Query {
 }
 
 type Mutation {
-    addEmployee(
-        name: String!
-        lastName: String!
-        dni: String!
-    ): Employee!
-    
-    addProject(
-        name: String!
-        description: String
-        startDate: String!
-        endDate: String!
-        employeeDnis: [String!]!
-    ): Project!
+    addEmployee(input: EmployeeInput!): Employee!
+    addProject(input: ProjectInput!): Project!
 }
 
 type Project {
@@ -33,7 +22,7 @@ type Project {
     description: String
     startDate: String!
     endDate: String!
-    status: String!
+    status: ProjectStatus!
     employees: [Employee!]!
 }
 
@@ -43,5 +32,27 @@ type Employee {
     lastName: String!
     dni: String!
     projects: [Project!]!
+}
+
+enum ProjectStatus {
+    ACTIVE
+    INACTIVE
+    COMPLETED
+    CANCELLED
+}
+
+input ProjectInput {
+    name: String!
+    description: String
+    startDate: String!
+    endDate: String!
+    status: ProjectStatus
+    employeeDnis: [String!]!
+}
+
+input EmployeeInput {
+    name: String!
+    lastName: String!
+    dni: String!
 }
 
